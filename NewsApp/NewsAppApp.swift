@@ -11,7 +11,19 @@ import SwiftUI
 struct NewsAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView{
+                NewsView(newsVM: NewsViewModel())
+                    .tabItem{
+                        Image(systemName: "newspaper.fill")
+                        Text("News")
+                    }
+                SavedView(savedVM: SavedViewModel())
+                    .tabItem{
+                        Image(systemName: "heart.fill")
+                        Text("Saved")
+                    }
+            }
+            
         }
     }
 }
