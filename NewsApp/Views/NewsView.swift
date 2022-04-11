@@ -35,10 +35,6 @@ struct NewsView: View {
                                 Label("Save", systemImage: "heart.fill")
                             }.tint(.pink)
                         }
-                
-                        
-                    
-                        
                 }
                 
             }
@@ -50,11 +46,27 @@ struct NewsView: View {
             .navigationTitle("Top News")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button{
-                        print("masok")
-                        newsVM.changeCategory(category: "ID")
+                    Menu{
+                        Button{
+                            newsVM.changeCountry("ID")
+                        }label: {
+                            if(newsVM.country == "ID"){
+                                Label("Indonesia", systemImage: "checkmark")
+                            }else{
+                                Text("Indonesia")
+                            }
+                        }
+                        Button{
+                            newsVM.changeCountry("US")
+                        }label: {
+                            if(newsVM.country == "US"){
+                                Label("United States", systemImage: "checkmark")
+                            }else{
+                                Text("United States")
+                            }
+                        }
                     }label: {
-                        Image(systemName: "gear")
+                        Image(systemName: "flag.fill")
                     }
                 }
             }
@@ -73,6 +85,8 @@ struct NewsView: View {
 //
     }
 }
+
+
 
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {

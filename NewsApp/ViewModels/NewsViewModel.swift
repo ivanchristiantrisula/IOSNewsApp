@@ -59,9 +59,8 @@ class NewsViewModel: ObservableObject {
         task.resume()
     }
     
-    func changeCategory(category : String){
-        print("masok")
-        self.country = "ID"
+    func changeCountry(_ country : String){
+        self.country = country
         getNews();
     }
     
