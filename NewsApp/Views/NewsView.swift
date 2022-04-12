@@ -25,13 +25,19 @@ struct NewsView: View {
                         .contextMenu{
                             Button{
                                 
+                                withAnimation{
+                                    savedNews.news.append(post)
+                                }
                             } label: {
                                 Label("Save", systemImage: "heart.fill")
                             }
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             Button{
-                                savedNews.news.append(post)
+                                
+                                withAnimation{
+                                    savedNews.news.append(post)
+                                }
                             }label: {
                                 Label("Save", systemImage: "heart.fill")
                             }.tint(.pink)
@@ -39,7 +45,6 @@ struct NewsView: View {
                 }
                 
             }
-            
             .sheet(isPresented: $showFullArticle) {
                 WebView(url: (URL(string : articleURL) ?? URL(string : "google.com"))!)
             }
@@ -70,6 +75,12 @@ struct NewsView: View {
                         Image(systemName: "flag.fill")
                     }
                 }
+            }
+            .refreshable {
+                withAnimation {
+                    newsVM.getNews()
+                }
+                
             }
         }
         

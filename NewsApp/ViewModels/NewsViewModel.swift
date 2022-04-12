@@ -42,7 +42,7 @@ class NewsViewModel: ObservableObject {
         }
     }
     
-    func callNewsAPI(completion: @escaping (_ result: Data?, _ error: Error?) -> Void){
+    private func callNewsAPI(completion: @escaping (_ result: Data?, _ error: Error?) -> Void){
         let url = URL(string: "\(API_URL)\(category)country=\(country)&apiKey=\(API_KEY)")!
         
         let task = URLSession.shared.dataTask(with: url) { data, res, err in
@@ -62,10 +62,6 @@ class NewsViewModel: ObservableObject {
     func changeCountry(_ country : String){
         self.country = country
         getNews();
-    }
-    
-    func saveNews(news: News){
-        
     }
 }
 
