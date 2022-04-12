@@ -11,6 +11,7 @@ struct NewsView: View {
     @ObservedObject var newsVM : NewsViewModel
     @State private var showFullArticle = false;
     @State private var articleURL = ""
+    @EnvironmentObject var savedNews : SavedNews;
     
     var body: some View {
         NavigationView{
@@ -30,7 +31,7 @@ struct NewsView: View {
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             Button{
-                                
+                                savedNews.news.append(post)
                             }label: {
                                 Label("Save", systemImage: "heart.fill")
                             }.tint(.pink)

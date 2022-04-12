@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct NewsAppApp: App {
+    @StateObject var savedNews = SavedNews();
+    
     var body: some Scene {
         WindowGroup {
             TabView{
@@ -16,14 +18,18 @@ struct NewsAppApp: App {
                     .tabItem{
                         Image(systemName: "newspaper.fill")
                         Text("News")
-                    }
-                SavedView(savedVM: SavedViewModel())
+                    }.environmentObject(savedNews)
+                SavedView()
                     .tabItem{
                         Image(systemName: "heart.fill")
                         Text("Saved")
-                    }
+                    }.environmentObject(savedNews)
             }
             
         }
     }
+}
+
+class SavedNews: ObservableObject {
+    @Published var news:[News] = []
 }
